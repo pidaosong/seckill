@@ -1,6 +1,9 @@
 package com.pi.miaosha.vo;
 
+import com.pi.miaosha.validator.IsMobile;
 import lombok.Data;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @program: miaosha
@@ -9,6 +12,11 @@ import lombok.Data;
  **/
 @Data
 public class LoginVo {
+
+    @NotNull
+    @IsMobile
     private String mobile;
+
+    @NotNull
     private String password;
 }

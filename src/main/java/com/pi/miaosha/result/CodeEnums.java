@@ -7,8 +7,10 @@ package com.pi.miaosha.result;
  **/
 public enum  CodeEnums {
     //通用错误码
-    SUCCESS(0,"success"),SERVER_ERROR(500100, "服务端异常"),
+    SUCCESS(0,"success"),
+    SERVER_ERROR(500100, "服务端异常"),
     BIND_ERROR(500101, "参数校验异常：%s"),
+    PARAM_EMPTY(500111,"request传入参数为空"),
     //登录模块 5002XX
     SESSION_ERROR(500210, "Session不存在或者已经失效"),
     PASSWORD_EMPTY(500211, "登录密码不能为空"),
@@ -26,6 +28,7 @@ public enum  CodeEnums {
         this.code = code;
         this.msg = msg;
     }
+
 
     public int getCode() {
         return code;
