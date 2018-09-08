@@ -2,10 +2,10 @@ package com.pi.miaosha.controller;
 
 import com.pi.miaosha.domain.User;
 import com.pi.miaosha.redis.RedisService;
-import com.pi.miaosha.redis.UserKey;
 import com.pi.miaosha.result.CodeEnums;
 import com.pi.miaosha.result.Result;
 import com.pi.miaosha.service.UserService;
+import com.pi.miaosha.util.AddCookieUtil;
 import com.pi.miaosha.util.MD5Util;
 import com.pi.miaosha.util.UUIDUtil;
 import com.pi.miaosha.vo.LoginVo;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -33,8 +32,6 @@ public class LoginController {
 
     @Autowired
     private RedisService redisService;
-
-    private static final String COOKI_NAME_TOKEN = "token";
 
     @PostMapping("/enter")
     public Map<String,Object> enter(@Valid LoginVo loginVo,HttpServletResponse response){
@@ -71,11 +68,11 @@ public class LoginController {
         }
         //生成cookie
         String token = UUIDUtil.uuid();
-        redisService.set(UserKey.token,token,user);
-        Cookie cookie = new Cookie(COOKI_NAME_TOKEN,token);
-        cookie.setMaxAge(UserKey.token.expireSeconds());
-        cookie.setPath("/");
-        response.addCookie(cookie);
+        addCookie(response, user, token);
         return CodeEnums.SUCCESS;
+    }
+
+    private void addCookie(HttpServletResponse response, User user, String token) {
+        AddCookieUtil.addCookie(response, token, user,redisService);
     }
 }
