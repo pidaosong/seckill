@@ -15,4 +15,8 @@ public interface ProductService {
      * @return
      */
     List<ProductVo> getProductVoList();
+
+    ProductVo getProduct(long id);
+
+    int updateStock(ProductVo product);
 }
