@@ -36,12 +36,15 @@ public class LoginController {
     @PostMapping("/enter")
     public Map<String,Object> enter(@Valid LoginVo loginVo,HttpServletResponse response){
         Map<String,Object> modelMap = new HashMap<>();
+        String tk = "";
         if (loginVo!=null){
             String password = loginVo.getPassword();
             String mobile = loginVo.getMobile();
-            CodeEnums ce = login(response,mobile,password);
+            String token = UUIDUtil.uuid();
+            CodeEnums ce = login(response,mobile,password,token);
             if (ce.getCode()==0){
                 modelMap.put("success",Result.success(true));
+                 tk = token;
             }else {
                 modelMap.put("success",Result.success(false));
                 modelMap.put("error",Result.error(ce));
@@ -53,7 +56,7 @@ public class LoginController {
         return modelMap;
     }
 
-    private CodeEnums login(HttpServletResponse response, String mobile, String password) {
+    private CodeEnums login(HttpServletResponse response, String mobile, String password,String token) {
         long id = Long.valueOf(mobile);
         User user = userService.getUserById(id);
         if (user==null){
@@ -67,7 +70,7 @@ public class LoginController {
             return CodeEnums.PASSWORD_ERROR;
         }
         //生成cookie
-        String token = UUIDUtil.uuid();
+        //String token = UUIDUtil.uuid();
         addCookie(response, user, token);
         return CodeEnums.SUCCESS;
     }

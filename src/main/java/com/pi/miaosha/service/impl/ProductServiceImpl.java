@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public int updateStock(ProductVo product) {
         MiaoshaProduct p = new MiaoshaProduct();
-        p.setId(product.getId());
+        p.setTbProductId(product.getId());
         p.setCount(product.getCount()-1);
         return productDao.updateStock(p);
     }

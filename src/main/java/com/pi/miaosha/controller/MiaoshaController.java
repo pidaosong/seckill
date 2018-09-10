@@ -38,8 +38,8 @@ public class MiaoshaController {
         }
         //判断库存
         ProductVo product = productService.getProduct(id);
-        int stock = product.getStock();
-        if (stock<=0){
+        int count = product.getCount();
+        if (count<=0){
             model.addAttribute("error",CodeEnums.MIAO_SHA_OVER.getMsg());
             return "miaoshaerror";
         }
@@ -53,6 +53,6 @@ public class MiaoshaController {
         OrderInfo orderInfo = miaoshaService.miaosha(user,product);
         model.addAttribute("orderinfo",orderInfo);
         model.addAttribute("product",product);
-        return null;
+        return "orderdetail";
     }
 }

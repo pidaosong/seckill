@@ -29,6 +29,10 @@ public class redirectController {
         return "productlist";
     }*/
 
+    @GetMapping("/productdetail1")
+    public String product(){
+        return "productdetail1";
+    }
 
 
 

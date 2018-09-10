@@ -11,16 +11,16 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
     # 初始化大小，最小，最大
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
+    initialSize: 100
+    minIdle: 500
+    maxActive: 1000
     # 配置获取连接等待超时的时间
     maxWait: 60000
     # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
     timeBetweenEvictionRunsMillis: 60000
     # 配置一个连接在池中最小生存的时间，单位是毫秒
     minEvictableIdleTimeMillis: 30000
-    validationQuery: SELECT 1 FROM DUAL
+    validationQuery: select 'x'
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
@@ -42,9 +42,9 @@ spring:
     password: pidao123
     jedis:
       pool:
-        max-active: 10
-        max-idle: 10
-        max-wait: 3000
+        max-active: 1000
+        max-idle: 500
+        max-wait: 500
     timeout: 0
 
 
