@@ -11,4 +11,6 @@ import com.pi.miaosha.vo.ProductVo;
  **/
 public interface MiaoshaService {
     OrderInfo miaosha(User user, ProductVo product);
+
+    long getMiaoshaResult(Long userId, long productId);
 }

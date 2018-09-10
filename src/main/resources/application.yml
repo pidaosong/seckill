@@ -46,6 +46,12 @@ spring:
         max-idle: 500
         max-wait: 500
     timeout: 0
+ #rabbitMq
+  rabbitmq:
+    host: 134.175.26.115
+    port: 5672
+    username: guest
+    password: guest
 
 
 #mybatis
@@ -54,6 +60,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:com.pi.miaosha.dao/*.xml
+
 
 
 

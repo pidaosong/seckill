@@ -16,4 +16,5 @@ public class ProductKey extends BasePrefix{
 
     public static ProductKey productDeatil = new ProductKey(60,"pd");
 
+    public static ProductKey miaoshaProduct = new ProductKey(0,"mp");
 }

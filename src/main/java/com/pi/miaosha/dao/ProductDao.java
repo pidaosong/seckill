@@ -22,6 +22,6 @@ public interface ProductDao {
     @Select("select p.*,mp.miaosha_price,mp.count,mp.start_date,mp.end_date from miaosha_product mp left join tb_product p on mp.tb_product_id = p.id where p.id=#{id}")
     ProductVo queryProductVo(long id);
 
-    @Update("update miaosha_product set count = #{count} where tb_product_id = #{tbProductId}")
+    @Update("update miaosha_product set count = #{count} where tb_product_id = #{tbProductId} and count > 0 ")
     int updateStock(MiaoshaProduct p);
 }

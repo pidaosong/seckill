@@ -1,5 +1,6 @@
 package com.pi.miaosha.dao;
 
+import com.pi.miaosha.config.eee;
 import com.pi.miaosha.domain.MiaoshaOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,5 +21,10 @@ public class OrderDaoTest {
     public void getMiaoshaOrderByUserIdProductId() {
         MiaoshaOrder miaoshaOrder = orderDao.getMiaoshaOrderByUserIdProductId(1L,1L);
         System.out.println(miaoshaOrder.toString());
+    }
+
+    @Test
+    public void test(){
+        eee.get().print();
     }
 }

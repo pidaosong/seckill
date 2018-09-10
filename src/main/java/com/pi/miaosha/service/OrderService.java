@@ -10,8 +10,10 @@ import com.pi.miaosha.vo.ProductVo;
  * @author: Mr.Pi
  * @create: 2018-09-08 20:23
  **/
-public interface OrderServer {
+public interface OrderService {
     MiaoshaOrder getMiaoshaOrderByUserIdProductId(Long userId, long productId);
 
     OrderInfo addOrder(User user, ProductVo product);
+
+    OrderInfo getOrderById(long orderId);
 }

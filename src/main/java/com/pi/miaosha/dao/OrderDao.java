@@ -24,4 +24,7 @@ public interface OrderDao {
     @Insert("insert into miaosha_order(tb_user_id,order_info_id,tb_product_id) values(" +
             "#{tbUserId},#{orderInfoId},#{tbProductId})")
     int insertMiaoshaOrder(MiaoshaOrder miaoshaOrder);
+
+    @Select("select * from order_info where id = #{id}")
+    OrderInfo queryOrderById(long id);
 }
